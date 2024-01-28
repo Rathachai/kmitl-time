@@ -1,32 +1,49 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Display current date and time</title>
+    <title>KMITL Time</title>
+    <script>
+        function toggle_darkmode() {
+           var body = document.body;
+           body.classList.toggle("dark-mode");
+
+           var footer = document.getElementsByTagName('footer')[0]
+           footer.classList.toggle("dark-mode");
+        }
+        </script>
     <style>
         body{
             font-family: "Helvetica, Arial, sans-serif";
-            /*color:white;
-            background-color: black;*/
         }
+
+        body.dark-mode{
+            color:white;
+            background-color: black;
+        }
+
         div#date{
             font-size: 40px;
-            padding:20px;
+            margin:20px;
         }
         
         div#time{
             font-size:20vw;
-            padding: 20px;
+            margin:20px;
         }
 
-        section#head{
-            padding:30px;
-            position:relative;
-            height: 20px;
+        section#header{
+            position:absolute;
+            top:0px;
+            background-color: white;
+            height: 80px;
+            width: 100%;
         }
         
-        section#datetime{
-            padding:30px;
+        section#body{
+            position:relative;
             text-align: center;
+            height: 90vh;
+            padding-top:80px;
         }
 
         img#kmitl{
@@ -54,14 +71,37 @@
             right:5px;
             font-size: 20pt;
         }
+
+        footer.dark-mode{
+            background-color: #555;
+        }
+
+        div#control{
+            text-align: center;
+            padding:0px 20px 20px 20px;
+
+            h3{
+                font-size: 40pt;
+            }
+
+            a{
+                display: block;
+                margin-bottom: 10px;
+            }
+        }
+
+
     </style>
   </head>
   <body>
-    <section id="head">
+
+    <section id="header">
         <img id="kmitl" src="https://engineer.kmitl.ac.th/wp-content/uploads/2023/10/logo02.png" alt="KMITL"/> 
         <img id="kmitl-eng" src="https://engineer.kmitl.ac.th/wp-content/uploads/2023/10/logo01-1.png" alt="School of Engineering"/>
     </section>
-    <section id="datetime">
+
+    <section id="body">
+
         <div id="date"></div>
         <div id="time"></div>
         <div> (Beta Version) </div>
@@ -70,6 +110,13 @@
     <footer>
        SAIG • CE-KMITL
     </footer>
+
+    <div id="control">
+        
+        <button onclick="toggle_darkmode()">toggle dark mode</button>
+        <h3>bit.ly/<b>k-time</b></h3>
+        <a href="https://github.com/Rathachai/kmitl-time">source code</a>
+    </div>
 
     <script>
       // create a function to update the date and time
@@ -88,6 +135,7 @@
       }
 
       // call the `updateDateTime` function every second
+      updateDateTime()
       setInterval(updateDateTime, 1000);
     </script>
 
